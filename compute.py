@@ -10,11 +10,16 @@ def table(tax_table, income):
     income_table = the_table[0]
     tax_rate_table = the_table[1]
     for i in range(1, len(income_table)):
-        if (income < income_table[i]):
+        if (income <= income_table[i]):
             break
         tax += (income_table[i] - income_table[i-1]) * tax_rate_table[i-1]/100
-        #print i, income_table[i], tax_rate_table[i], tax
-    tax += (income - income_table[i-1]) * tax_rate_table[i-1]/100
+        #print ">>", i, income_table[i], tax_rate_table[i-1], tax
+
+    if (income > income_table[i]):
+        tax += (income - income_table[i]) * tax_rate_table[i]/100
+    else:
+        tax += (income - income_table[i-1]) * tax_rate_table[i-1]/100
+    #print ">>>", i, income, tax
     return tax
 
 def compute_amt(income):
