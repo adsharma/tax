@@ -19,7 +19,10 @@ def table(tax_table, income):
 
 def compute(user, income):
     ca_tax = table(ca2012.tax, income)
-    fed_tax = table(fed2012.tax, income - ca_tax)
+    std_deduction = fed2012.std_deduction[user.status]
+    income = income - std_deduction - ca_tax
+    income = max(income, 0)
+    fed_tax = table(fed2012.tax, income)
     #print fed_tax, ca_tax
     return fed_tax + ca_tax
        

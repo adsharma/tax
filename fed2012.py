@@ -1,3 +1,7 @@
+"""
+http://www.fivecentnickel.com/2011/09/28/2012-federal-income-tax-brackets-irs-tax-rates/
+"""
+
 tax = {
 "single" : 
            [ [0, 8700, 35350, 85650, 178650, 388350],
