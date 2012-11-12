@@ -17,7 +17,11 @@ def table(tax_table, income):
     tax += (income - income_table[i-1]) * tax_rate_table[i-1]/100
     return tax
 
-def compute(user, income):
+def compute_amt(income):
+    """TBD"""
+    return 0
+
+def compute_normal(income):
     ca_tax = table(ca2012.tax, income)
     std_deduction = fed2012.std_deduction[user.status]
     income = income - std_deduction - ca_tax
@@ -25,6 +29,9 @@ def compute(user, income):
     fed_tax = table(fed2012.tax, income)
     #print fed_tax, ca_tax
     return fed_tax + ca_tax
+
+def compute(income):
+    return max(compute_normal(income), compute_amt(income))
        
 if __name__ == '__main__':
     user = user.User()
@@ -36,5 +43,5 @@ if __name__ == '__main__':
 
     print "%-7s\t%-7s\t%-6s" % ("Income", "Tax", "Effective Rate")
     for income in intervals:
-        tax = compute(user, income)
+        tax = compute(income)
         print "%07d\t%07d\t%3.2d" % (income, tax, tax * 100/income)
