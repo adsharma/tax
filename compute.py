@@ -32,8 +32,10 @@ def compute_normal(income):
     income = income - std_deduction - ca_tax
     income = max(income, 0)
     fed_tax = table(fed2012.tax, income)
+    social_sec_tax = min(fed2012.social_sec_max, income) * fed2012.social_sec_rate/100
+    medicare_tax = income * fed2012.medicare_rate/100
     #print fed_tax, ca_tax
-    return fed_tax + ca_tax
+    return fed_tax + ca_tax + social_sec_tax + medicare_tax
 
 def compute(income):
     return max(compute_normal(income), compute_amt(income))

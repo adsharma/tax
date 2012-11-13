@@ -18,3 +18,7 @@ std_deduction = {
     "single" : 5950,
     "married filing jointly" : 11900
 }
+
+social_sec_max = 110100
+social_sec_rate = 4.2
+medicare_rate = 1.45
