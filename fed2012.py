@@ -14,9 +14,10 @@ tax = {
            ],
 }
 
+# includes exemption
 std_deduction = {
-    "single" : 5950,
-    "married filing jointly" : 11900
+    "single" : 9750,  # 5950 + 3800 (exemption)
+    "married filing jointly" : 19500 # 11900 +  2 * 3800 (exemption)
 }
 
 social_sec_max = 110100

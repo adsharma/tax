@@ -43,6 +43,7 @@ def compute(income):
 if __name__ == '__main__':
     user = user.User()
     user.status = 'married filing jointly'
+    #user.status = 'single'
 
     intervals = range(10000,100000, 10000) + \
                 range(100000, 500000, 25000) + \
