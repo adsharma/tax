@@ -47,8 +47,8 @@ if __name__ == '__main__':
 
     intervals = range(10000,100000, 10000) + \
                 range(100000, 500000, 25000) + \
-                range(500000, 2600000, 100000) + \
-                range(1000000, 10000000, 1000000)
+                range(500000, 2000000, 100000) + \
+                range(2000000, 10000000, 1000000)
 
     print "%-7s\t%-7s\t%-6s" % ("Income", "Tax", "Effective Rate")
     for income in intervals:
