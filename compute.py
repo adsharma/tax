@@ -47,9 +47,10 @@ if __name__ == '__main__':
 
     intervals = range(10000,100000, 10000) + \
                 range(100000, 500000, 25000) + \
-                range(500000, 1600000, 100000)
+                range(500000, 2600000, 100000) + \
+                range(1000000, 10000000, 1000000)
 
     print "%-7s\t%-7s\t%-6s" % ("Income", "Tax", "Effective Rate")
     for income in intervals:
         tax = compute(income)
-        print "%07d\t%07d\t%3.2d" % (income, tax, tax * 100/income)
+        print "%07d\t%07d\t%3.2f" % (income, tax, tax * 100.0/income)
