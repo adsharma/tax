@@ -31,7 +31,9 @@ def compute_normal(income):
     std_deduction = fed2012.std_deduction[user.status]
     social_sec_tax = min(fed2012.social_sec_max, income) * fed2012.social_sec_rate/100
     medicare_tax = income * fed2012.medicare_rate/100
-    income = income - std_deduction - ca_tax
+    itemized_deduction = ca_tax # TODO: Add other deductions here
+    deduction = max(std_deduction, itemized_deduction)
+    income = income - deduction
     income = max(income, 0)
     fed_tax = table(fed2012.tax, income)
     #print fed_tax, ca_tax
