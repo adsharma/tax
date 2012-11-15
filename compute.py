@@ -53,7 +53,12 @@ if __name__ == '__main__':
                 range(500000, 2000000, 100000) + \
                 range(2000000, 10000000, 1000000)
 
-    print "%-7s\t%-7s\t%-6s" % ("Income", "Tax", "Effective Rate")
+    print "%-7s\t%-7s\t%-16s%-16s" % ("Income", "Tax", "Effective Rate", "Marginal Rate")
+    last_tax = 0
+    last_income = 0
     for income in intervals:
         tax = compute(income)
-        print "%07d\t%07d\t%3.2f" % (income, tax, tax * 100.0/income)
+        marginal = (tax - last_tax) * 100.0/(income - last_income) 
+        print "%07d\t%07d\t%-13.2f\t%3.2f" % (income, tax, tax * 100.0/income, marginal)
+        last_tax = tax
+        last_income = income
