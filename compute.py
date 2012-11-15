@@ -29,11 +29,12 @@ def compute_amt(income):
 def compute_normal(income):
     ca_tax = table(ca2012.tax, income)
     std_deduction = fed2012.std_deduction[user.status]
+    exemption = fed2012.exemption[user.status]
     social_sec_tax = min(fed2012.social_sec_max, income) * fed2012.social_sec_rate/100
     medicare_tax = income * fed2012.medicare_rate/100
     itemized_deduction = ca_tax # TODO: Add other deductions here
     deduction = max(std_deduction, itemized_deduction)
-    income = income - deduction
+    income = income - deduction - exemption
     income = max(income, 0)
     fed_tax = table(fed2012.tax, income)
     #print fed_tax, ca_tax
