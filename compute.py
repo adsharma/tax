@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
-import fed2012
-import ca2012
+import time
+from optparse import OptionParser
+
 import user
 
 def table(tax_table, income):
@@ -27,16 +28,16 @@ def compute_amt(income):
     return 0
 
 def compute_normal(income):
-    ca_tax = table(ca2012.tax, income)
-    std_deduction = fed2012.std_deduction[user.status]
-    exemption = fed2012.exemption[user.status]
-    social_sec_tax = min(fed2012.social_sec_max, income) * fed2012.social_sec_rate/100
-    medicare_tax = income * fed2012.medicare_rate/100
+    ca_tax = table(state.tax, income)
+    std_deduction = fed.std_deduction[user.status]
+    exemption = fed.exemption[user.status]
+    social_sec_tax = min(fed.social_sec_max, income) * fed.social_sec_rate/100
+    medicare_tax = income * fed.medicare_rate/100
     itemized_deduction = ca_tax # TODO: Add other deductions here
     deduction = max(std_deduction, itemized_deduction)
     income = income - deduction - exemption
     income = max(income, 0)
-    fed_tax = table(fed2012.tax, income)
+    fed_tax = table(fed.tax, income)
     #print fed_tax, ca_tax
     return fed_tax + ca_tax + social_sec_tax + medicare_tax
 
@@ -44,6 +45,15 @@ def compute(income):
     return max(compute_normal(income), compute_amt(income))
        
 if __name__ == '__main__':
+    parser = OptionParser()
+    default_year = time.strftime("%Y")
+    parser.add_option("-y", "--year", dest="year", type="int",
+                      default=int(default_year))
+    (options, args) = parser.parse_args()
+
+    modules = ["%s%s" % (x, options.year) for x in ['ca', 'fed'] ]
+    (state, fed) = map(__import__, modules)
+
     user = user.User()
     user.status = 'married filing jointly'
     #user.status = 'single'
