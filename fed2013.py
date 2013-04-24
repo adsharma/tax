@@ -1,29 +1,30 @@
 """
-http://www.fivecentnickel.com/2011/09/28/2012-federal-income-tax-brackets-irs-tax-rates/
+http://www.forbes.com/sites/kellyphillipserb/2013/01/15/irs-announces-2013-tax-rates-standard-deduction-amounts-and-more/
+http://taxes.about.com/b/2013/01/03/social-security-tax-for-2013.htm
 """
 
 tax = {
 "single" : 
-           [ [0, 8700, 35350, 85650, 178650, 388350],
-             [10, 15, 25, 28, 33, 35]
+           [ [0, 8925, 36250, 87850, 183250, 398350, 400000 ],
+             [10, 15, 25, 28, 33, 35, 39.6]
            ],
 
 "married filing jointly" : 
-           [ [ 0, 17400, 70700, 142700, 217450, 388350 ],
-             [10, 15, 25, 28, 33, 35]
+           [ [ 0, 17850, 72500, 146400, 223050, 398350, 450000 ],
+             [10, 15, 25, 28, 33, 35, 39.6 ]
            ],
 }
 
 std_deduction = {
-    "single" : 5950,
-    "married filing jointly" : 11900
+    "single" : 6100,
+    "married filing jointly" : 12200
 }
 
 exemption = {
-    "single" : 3800,
-    "married filing jointly" : 3800 * 2
+    "single" : 3900,
+    "married filing jointly" : 3900 * 2
 }
 
-social_sec_max = 110100
-social_sec_rate = 4.2
+social_sec_max = 113700
+social_sec_rate = 6.2
 medicare_rate = 1.45
